@@ -11,18 +11,22 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-    
 <body>
 
     <nav class="glass-panel">
         <div class="nav-logo">Explicitly Her</div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="#hero">Home</a></li>
             <li><a href="#story">Origin</a></li>
             <li><a href="#journey">Journey</a></li>
             <li><a href="#achievements">Achievements</a></li>
             <li><a href="#impact">Impact</a></li>
         </ul>
+           <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <header id="hero">
@@ -47,17 +51,14 @@
             </div>
             
             <div class="hero-image-container1 reveal">
-            <div class="glass-panel">
-                <img src="grad-portrait.jpg" alt="Portrait of Crisanchai" class="hero-image1">
+                <div class="glass-panel">
+                    <img src="grad-portrait.jpg" alt="Portrait of Crisanchai" class="hero-image1">
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
-    </body>
-</html>
-
-<section id="journey">
+    <section id="journey">
         <h2 class="section-title reveal">Her Journey & Advocacy</h2>
         <div class="bento-grid">
             
@@ -142,8 +143,7 @@
             </p>
             <div class="pull-quote glass-panel">
                 Having someone to guide you is one of the most valuable things we can have. Mentorship plays an important role in growth and learning. As more women participate in competitions, projects, and leadership roles, they help inspire and empower the next generation of students to pursue careers in tech.
-                <span class="quote-author">— Crisanchai Crisostomo
-                </span>
+                <span class="quote-author">— Crisanchai Crisostomo</span>
             </div>
         </div>
     </section>
@@ -153,6 +153,7 @@
     </footer>
 
     <script>
+        // Scroll Reveal Logic
         function revealElements() {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
@@ -168,6 +169,25 @@
             reveals.forEach((reveal) => observer.observe(reveal));
         }
         document.addEventListener("DOMContentLoaded", revealElements);
+
+        // Mobile Hamburger Menu Logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        // Toggle the menu when clicking the hamburger icon
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Automatically close the menu when a link is clicked
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('toggle');
+            });
+        });
     </script>
 
 </body>
